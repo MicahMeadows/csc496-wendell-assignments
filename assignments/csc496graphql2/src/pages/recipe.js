@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import { motion } from 'framer-motion'
 
 const RecipePage = (props) => {
     const recipe = props.pageContext.recipe
@@ -20,7 +21,7 @@ const RecipePage = (props) => {
             <h1>Recipe: { recipe.title }</h1>
             <h2>Time To Cook: { recipe.cookingTime }</h2>
             <h3>Categories: { categoryString }</h3>
-            <img src={ recipe.mediaImage.mediaImage.url } alt={ recipe.title }></img>
+            <motion.img src={ recipe.mediaImage.mediaImage.url } alt={ recipe.title } animate={{opacity: 1}} initial={{opacity: 0}}/>
             <h3>Tags: { tagString }</h3>
             <h3>Prep Time: { recipe.preparationTime }</h3>
             <h3># Servings: { recipe.numberOfServings }</h3>
