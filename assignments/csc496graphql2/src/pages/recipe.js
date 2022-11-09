@@ -4,15 +4,32 @@ import { Link } from 'gatsby'
 const RecipePage = (props) => {
     const recipe = props.pageContext.recipe
 
-    console.log(`recipeImage: ${recipe.mediaImage.mediaImage.url}`)
+    var tagString = "";
+    for (var tag of recipe.tags) {
+        tagString = `${tagString} ${tag.name}`
+    }
+
+    var categoryString = "";
+    for (var category of recipe.recipeCategory) {
+        categoryString = `${categoryString} ${category.name}`
+    }
 
     return (
         <>
+            <Link to="/recipes"><h1>See more recipes.</h1></Link>
             <h1>Recipe: { recipe.title }</h1>
             <h2>Time To Cook: { recipe.cookingTime }</h2>
-            <img src={ recipe.mediaImage.mediaImage.url } alt="food image"></img>
+            <h3>Categories: { categoryString }</h3>
+            <img src={ recipe.mediaImage.mediaImage.url } alt={ recipe.title }></img>
+            <h3>Tags: { tagString }</h3>
+            <h3>Prep Time: { recipe.preparationTime }</h3>
+            <h3># Servings: { recipe.numberOfServings }</h3>
+            <h3>difficulty: { recipe.difficulty } </h3>
             <h3>Status: { recipe.status }</h3>
-            <Link to="/recipes">See more recipes.</Link>
+            <div>
+                <h3>Instructions:</h3>
+                <div dangerouslySetInnerHTML={{__html:recipe.recipeInstruction.value}} />         
+            </div>
         </>
     );
 }

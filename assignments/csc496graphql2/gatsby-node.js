@@ -16,28 +16,41 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
-    query {
-      Drupal {
-        nodeRecipes(first: 100) {
-          edges {
-            recipe: node {
-              id
-              changed
-              cookingTime
-              path
-              status
-              title
-              created
+  {
+    Drupal {
+      nodeRecipes(first: 100) {
+        edges {
+          recipe: node {
+            id
+            changed
+            cookingTime
+            path
+            status
+            title
+            created
+            mediaImage {
               mediaImage {
-                mediaImage {
-                  url
-                }
+                url
               }
+            }
+            tags {
+              name
+            }
+            recipeCategory {
+              name
+            }
+            difficulty
+            numberOfServings
+            preparationTime
+            recipeInstruction {
+              value
             }
           }
         }
       }
     }
+  }
+  
   `)
 
   const recipes = result.data.Drupal.nodeRecipes.edges.map(edge => edge.recipe);

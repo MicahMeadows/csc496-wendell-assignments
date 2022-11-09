@@ -7,8 +7,7 @@ function RecipeItem(props) {
     return (
         <>
             <div>
-                <h3>{ recipe.title }</h3>
-                <Link to={recipeLink}>Go!</Link>
+                <Link to={recipeLink}><h3>{ recipe.title }</h3></Link>
             </div>
         </>
     );
