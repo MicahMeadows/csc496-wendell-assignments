@@ -1,6 +1,17 @@
 import * as React from 'react'
+import { Link } from 'gatsby';
 
-export default function RecipeItem(props) {
+function RecipeItem(props) {
     const recipe = props.recipe
-    return <h3>{ recipe.title }</h3>
+    const recipeLink = `/recipe/${recipe.id}`
+    return (
+        <>
+            <div>
+                <h3>{ recipe.title }</h3>
+                <Link to={recipeLink}>Go!</Link>
+            </div>
+        </>
+    );
 }
+
+export default RecipeItem

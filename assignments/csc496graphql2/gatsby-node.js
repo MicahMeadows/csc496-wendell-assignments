@@ -28,6 +28,11 @@ exports.createPages = async ({ graphql, actions }) => {
               status
               title
               created
+              mediaImage {
+                mediaImage {
+                  url
+                }
+              }
             }
           }
         }
